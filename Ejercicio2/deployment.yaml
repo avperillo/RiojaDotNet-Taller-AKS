@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-gatetes-v2
+spec:
+  strategy:
+      type: Recreate
+  selector:
+    matchLabels:
+      app: gatetes-v2
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: gatetes-v2
+    spec:
+      containers:
+      - name: gatetes-v2
+        image: docker.io/borjareinares/aks-workshop-gatetes-v2:latest
+        resources: {}
+        ports:
+        - containerPort: 5000
+      restartPolicy: Always
